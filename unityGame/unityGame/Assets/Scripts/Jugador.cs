@@ -7,28 +7,29 @@ public class Jugador : MonoBehaviour
     private Animator jugador;
     private Rigidbody2D cuerpoJugador;
     public float fuerzaSalto;
+    //public boolean estaSuelo;
+    public int numero;
     
-    void Start()
-    {
+    protected void Start(){
         jugador = GetComponent<Animator>();
         cuerpoJugador = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Si se presiona una tecla, le pasamos la tecla Space.
+    protected void Update(){
         if(Input.GetKeyDown(KeyCode.Space)){
             jugador.SetBool("estaSaltando",true);
             cuerpoJugador.AddForce(new Vector2(0,fuerzaSalto));
+            // estaSuelo = false;
         }
     }
 
-    //Esta funcion detecta si choca el jugador.
     private void OnCollisionEnter2D(Collision2D collision) {
-        //Si choca..
         if(collision.gameObject.tag == "Suelo"){
             jugador.SetBool("estaSaltando",false);
+            //estaSuelo = true;
+        }
+        if(collision.gameObject.tag == "Obstaculo"){
+           GameManager.gameOver = true;
         }
     }
 }
