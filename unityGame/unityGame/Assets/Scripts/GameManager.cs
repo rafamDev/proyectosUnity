@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         }
         for(int i=2; i < 50; i++){
            troncos.Add(Instantiate(tronco, new Vector2(i * 20,-2.00f), Quaternion.identity)); 
-        } 
+         }
     }
 
     protected void Update(){
@@ -27,15 +27,22 @@ public class GameManager : MonoBehaviour
              for(int i=0; i < troncos.Count; i++){
                 troncos[i].transform.position += new Vector3(-1,0,0) * Time.deltaTime * 5;
              }
-       }else{
-           if(Input.GetKeyDown(KeyCode.X)){
-           gameOver = false;
-           menuGameOver.SetActive(false);
-           SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
-       }
-          menuGameOver.SetActive(true);
-       }
-  } 
+             if(troncos.Count == 47){
+                gameOver = true;
+             }
+      }
+      if(gameOver == true){
+         if(Input.GetKeyDown(KeyCode.X)){
+             gameOver = false;
+             menuGameOver.SetActive(false);
+             SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
+        menuGameOver.SetActive(true);
+      }  
+     
+   }
+  
+   
 
 
 }
