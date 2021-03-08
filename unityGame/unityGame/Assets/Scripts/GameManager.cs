@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour{
 
     protected void Update(){
       if(gameOver == false){ 
-          fondo.material.mainTextureOffset = fondo.material.mainTextureOffset + new Vector2(0.15f,0) * Time.deltaTime;
+          fondo.material.mainTextureOffset = fondo.material.mainTextureOffset + new Vector2(0.15f,0) * Time.deltaTime * 2;
              for(int i=0; i < troncos.Count; i++){
                  troncos[i].transform.position += new Vector3(-1,0,0) * Time.deltaTime * 6;
              }
